@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'MOT',
-      theme: AppTheme.lightTheme(context),
+      theme: AppTheme.darkTheme(context),
       initialRoute: WelcomeScreen.routeName,
       routes: routes,
     );

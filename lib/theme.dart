@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class AppTheme {
-  static ThemeData lightTheme(BuildContext context) {
+  static ThemeData darkTheme(BuildContext context) {
     return ThemeData(
       scaffoldBackgroundColor: const Color(0xFF222325),
       fontFamily: "Muli",
