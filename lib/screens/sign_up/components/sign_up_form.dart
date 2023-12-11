@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mot/screens/welcome/welcome_screen.dart';
-
-import '../../../components/custom_surfix_icon.dart';
-import '../../../components/form_error.dart';
 import '../../../constants.dart';
 //import '../../complete_profile/complete_profile_screen.dart';
 
@@ -47,8 +44,8 @@ class _SignUpFormState extends State<SignUpForm> {
                 borderSide: const BorderSide(color: kPrimaryColor),
                 borderRadius: BorderRadius.circular(29.0),
               ),
-              hintStyle: TextStyle(color: Color(0xFF4E4F51)),
-              contentPadding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 25.0),
+              hintStyle: const TextStyle(color: Color(0xFF4E4F51)),
+              contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 25.0),
             ),
           ),
           const SizedBox(height: 16),
@@ -74,8 +71,8 @@ class _SignUpFormState extends State<SignUpForm> {
                 borderSide: const BorderSide(color: kPrimaryColor),
                 borderRadius: BorderRadius.circular(29.0),
               ),
-              hintStyle: TextStyle(color: Color(0xFF4E4F51)),
-              contentPadding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 25.0),
+              hintStyle: const TextStyle(color: Color(0xFF4E4F51)),
+              contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 25.0),
             ),
           ),
           const SizedBox(height: 16),
@@ -104,8 +101,8 @@ class _SignUpFormState extends State<SignUpForm> {
                 borderSide: const BorderSide(color: kPrimaryColor),
                 borderRadius: BorderRadius.circular(29.0),
               ),
-              hintStyle: TextStyle(color: Color(0xFF4E4F51)),
-              contentPadding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 25.0),
+              hintStyle: const TextStyle(color: Color(0xFF4E4F51)),
+              contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 25.0),
             ),
           ),
           const SizedBox(height: 16),
@@ -145,7 +142,7 @@ class _SignUpFormState extends State<SignUpForm> {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen
-                Navigator.pushReplacementNamed(context, WelcomeScreen.routeName); // TODO change to complete profile screen
+                Navigator.pushNamed(context, WelcomeScreen.routeName); // TODO change to complete profile screen
               }
             },
             child: const Text("Continue"),

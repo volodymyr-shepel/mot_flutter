@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mot/screens/welcome/welcome_screen.dart';
-
+import '../../constants.dart';
 
 class LoginSuccessScreen extends StatelessWidget {
   static String routeName = "/login_success";
@@ -10,8 +10,14 @@ class LoginSuccessScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const SizedBox(),
-        title: const Text("Login Success"),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios),
+          color: Colors.white,
+        ),
+        backgroundColor: kPrimaryDarkColor,
       ),
       body: Column(
         children: [
@@ -26,7 +32,7 @@ class LoginSuccessScreen extends StatelessWidget {
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
-              color: Colors.black,
+              color: Colors.white,
             ),
           ),
           const Spacer(),
@@ -34,7 +40,7 @@ class LoginSuccessScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, WelcomeScreen.routeName); // TODO: change so it goes to home screen(init screen)
+                Navigator.pushNamed(context, WelcomeScreen.routeName); // TODO: change so it goes to home screen(init screen)
               },
               child: const Text("Back to home"),
             ),

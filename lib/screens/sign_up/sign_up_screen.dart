@@ -21,18 +21,18 @@ class SignUpScreen extends StatelessWidget {
         ),
         backgroundColor: kPrimaryDarkColor,
       ),
-      body: SafeArea(
+      body: const SafeArea(
         child: Center(
           child: SizedBox(
             width: double.infinity,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.symmetric(horizontal: 20),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center, // Center vertically
                   children: [
-                    const SizedBox(height: 16),
-                    const Text(
+                    SizedBox(height: 16),
+                    Text(
                       "Register Account",
                       style: TextStyle(
                         color: Colors.white,
@@ -40,8 +40,8 @@ class SignUpScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 20),
-                    const SignUpForm(),
+                    SizedBox(height: 20),
+                    SignUpForm(),
                   ],
                 ),
               ),

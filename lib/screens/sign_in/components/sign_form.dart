@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../components/custom_surfix_icon.dart';
 import '../../../constants.dart';
 import '../../../helper/keyboard.dart';
 import '../../forgot_password/forgot_password_screen.dart';
@@ -19,24 +18,7 @@ class _SignFormState extends State<SignForm> {
   String? password;
   bool? remember = false;
   // Commenting out the error handling related variables
-  final List<String?> errors = [];
 
-
-  void addError({String? error}) {
-    if (!errors.contains(error)) {
-      setState(() {
-        errors.add(error);
-      });
-    }
-  }
-
-  void removeError({String? error}) {
-    if (errors.contains(error)) {
-      setState(() {
-        errors.remove(error);
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,22 +29,12 @@ class _SignFormState extends State<SignForm> {
           TextFormField(
             keyboardType: TextInputType.emailAddress,
             onSaved: (newValue) => email = newValue,
-            onChanged: (value) {
-              // Commenting out error handling logic
-              if (value.isNotEmpty) {
-                removeError(error: kEmailNullError);
-              } else if (emailValidatorRegExp.hasMatch(value)) {
-                removeError(error: kInvalidEmailError);
-              }
-              return;
-            },
+            
             validator: (value) {
               // Commenting out error handling logic
               if (value!.isEmpty) {
-                addError(error: kEmailNullError);
                 return "Email can not be empty";
               } else if (!emailValidatorRegExp.hasMatch(value)) {
-                addError(error: kInvalidEmailError);
                 return "Enter correct email";
               }
               return null;
@@ -90,10 +62,8 @@ class _SignFormState extends State<SignForm> {
             validator: (value) {
               // Commenting out error handling logic
               if (value!.isEmpty) {
-                addError(error: kPassNullError);
                 return "Password can not be empty";
               } else if (value.length < 8) {
-                addError(error: kShortPassError);
                 return "Invalid password";
               }
               return null;
@@ -119,7 +89,7 @@ class _SignFormState extends State<SignForm> {
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: GestureDetector(
-                  onTap: () => Navigator.pushReplacementNamed(
+                  onTap: () => Navigator.pushNamed(
                       context, ForgotPasswordScreen.routeName),
                   child: const Text(
                     "Forgot Password?",
@@ -141,7 +111,7 @@ class _SignFormState extends State<SignForm> {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
-                Navigator.pushReplacementNamed(context, LoginSuccessScreen.routeName);
+                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }
             },
             child: const Text("Continue"),
