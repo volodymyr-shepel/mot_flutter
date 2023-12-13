@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../constants.dart';
 import '../../components/no_account_text.dart';
-import 'components/sign_form.dart';
+import 'components/sign_in_form.dart';
 
 class SignInScreen extends StatelessWidget {
   static String routeName = "/sign_in";

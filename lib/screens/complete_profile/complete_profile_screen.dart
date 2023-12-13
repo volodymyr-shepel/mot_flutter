@@ -11,31 +11,39 @@ class CompleteProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign Up'),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios),
+          color: Colors.white,
+        ),
+        backgroundColor: kPrimaryDarkColor,
       ),
-      body: SafeArea(
-        child: SizedBox(
-          width: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const SizedBox(height: 16),
-                  const Text("Complete Profile", style: headingStyle),
-                  const Text(
-                    "Complete your details or continue  \nwith social media",
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 16),
-                  const CompleteProfileForm(),
-                  const SizedBox(height: 30),
-                  Text(
-                    "By continuing your confirm that you agree \nwith our Term and Condition",
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                ],
+      body: const Center(
+        child: SafeArea(
+          child: SizedBox(
+            width: double.infinity,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(height: 16),
+                    Text(
+                      "Complete Profile",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    CompleteProfileForm(),
+                    SizedBox(height: 30),
+        
+                  ],
+                ),
               ),
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mot/screens/complete_profile/complete_profile_screen.dart';
 import 'package:mot/screens/sign_up/sign_up_success_screen.dart';
 import '../../../components/custom_text_form_field.dart';
 import '../../../constants.dart';
@@ -15,8 +16,7 @@ class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
   String? email;
   String? password;
-  String? firstName;
-  String? lastName;
+  String? confirmPassword;
   
 
   @override
@@ -25,34 +25,34 @@ class _SignUpFormState extends State<SignUpForm> {
       key: _formKey,
       child: Column(
         children: [
-          CustomTextFormField(
-            labelText: "First Name",
-            hintText: "Enter your first name",
-            onSaved: (newValue) => firstName = newValue,
-            obscureText: false,
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "First name can not be empty";
-              }
-              return null;
-            },
-            keyboardType: TextInputType.text,
-          ),
-          const SizedBox(height: 16),
-          CustomTextFormField(
-            obscureText: false,
-          labelText: "Last Name",
-          hintText: "Enter your last name",
-          onSaved: (newValue) => lastName = newValue,
-          validator: (value) {
-            if (value!.isEmpty) {
-              return "Last name can not be empty";
-            }
-            return null;
-          },
-          keyboardType: TextInputType.text,
-      ),
-          const SizedBox(height: 16),
+      //     CustomTextFormField(
+      //       labelText: "First Name",
+      //       hintText: "Enter your first name",
+      //       onSaved: (newValue) => firstName = newValue,
+      //       obscureText: false,
+      //       validator: (value) {
+      //         if (value!.isEmpty) {
+      //           return "First name can not be empty";
+      //         }
+      //         return null;
+      //       },
+      //       keyboardType: TextInputType.text,
+      //     ),
+      //     const SizedBox(height: 16),
+      //     CustomTextFormField(
+      //       obscureText: false,
+      //     labelText: "Last Name",
+      //     hintText: "Enter your last name",
+      //     onSaved: (newValue) => lastName = newValue,
+      //     validator: (value) {
+      //       if (value!.isEmpty) {
+      //         return "Last name can not be empty";
+      //       }
+      //       return null;
+      //     },
+      //     keyboardType: TextInputType.text,
+      // ),
+      //     const SizedBox(height: 16),
 
           CustomTextFormField(
             obscureText: false,
@@ -83,13 +83,30 @@ class _SignUpFormState extends State<SignUpForm> {
           return null;
         },
       ),
+      const SizedBox(height: 16),
+          CustomTextFormField(
+        labelText: "Confirm password",
+        hintText: "Re-enter your password",
+        keyboardType: TextInputType.text,
+        obscureText: true,
+        onSaved: (newValue) => confirmPassword = newValue,
+        validator: (value) {
+          if (value!.isEmpty) {
+            return "Password can not be empty";
+          } else if (password != null && password != value) {
+            return "Passwords do not match";
+          }
+          return null;
+          },
+
+      ),
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen
-                Navigator.pushNamed(context, SignUpSuccessScreen.routeName); // TODO change to complete profile screen
+                Navigator.pushNamed(context, CompleteProfileScreen.routeName); 
               }
             },
             child: const Text("Continue"),
