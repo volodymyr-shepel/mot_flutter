@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mot/components/custom_text_form_field.dart';
 
 import '../../../constants.dart';
 import '../../../helper/keyboard.dart';
@@ -26,63 +27,35 @@ class _SignFormState extends State<SignForm> {
       key: _formKey,
       child: Column(
         children: [
-          TextFormField(
-            keyboardType: TextInputType.emailAddress,
+           CustomTextFormField(
+            obscureText: false,
+            labelText: "Email",
+            hintText: "Enter your email",
+            keyboardType: TextInputType.emailAddress, // Set the keyboard type
             onSaved: (newValue) => email = newValue,
-            
             validator: (value) {
-              // Commenting out error handling logic
-              if (value!.isEmpty) {
-                return "Email can not be empty";
-              } else if (!emailValidatorRegExp.hasMatch(value)) {
-                return "Enter correct email";
+              if (value!.isEmpty || !emailValidatorRegExp.hasMatch(value)) {
+                return "Invalid Email";
               }
               return null;
             },
-            decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.white),
-                borderRadius: BorderRadius.circular(29.0),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: kPrimaryColor),
-                borderRadius: BorderRadius.circular(29.0),
-              ),
-              labelText: "Email",
-              hintText: "Enter your email",
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              hintStyle: TextStyle(color: Color(0xFF4E4F51)),
-            ),
-          ),
+        ),
           const SizedBox(height: 20),
-          TextFormField(
-            obscureText: true,
-            onSaved: (newValue) => password = newValue,
-            
-            validator: (value) {
-              // Commenting out error handling logic
-              if (value!.isEmpty) {
-                return "Password can not be empty";
-              } else if (value.length < 8) {
-                return "Invalid password";
-              }
-              return null;
-            },
-            decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.white),
-                borderRadius: BorderRadius.circular(29.0),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: kPrimaryColor),
-                borderRadius: BorderRadius.circular(29.0),
-              ),
-              labelText: "Password",
-              hintText: "Enter your password",
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              hintStyle: const TextStyle(color: Color(0xFF4E4F51)),
-            ),
-          ),
+          CustomTextFormField(
+          labelText: "Password",
+          hintText: "Enter your password",
+          keyboardType: TextInputType.text,
+          obscureText: true,
+          onSaved: (newValue) => password = newValue,
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Password can not be empty";
+            } else if (value.length < 8) {
+              return "Invalid Password";
+            }
+            return null;
+          },
+        ),
           const SizedBox(height: 15),
           Row(
             children: [
