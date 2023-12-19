@@ -16,10 +16,10 @@ class ProfileScreen extends StatelessWidget {
       // TODO : remove app bar here since the nvigation will be done from init screen and only body of the screen will change 
       // so app bar and bottom menu will be from the init screen, that is why it is not needed here
       // but for now i will leave it here since there is no init screen still
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: kPrimaryDarkColor,
-      ),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //   backgroundColor: kPrimaryDarkColor,
+      // ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Column(
