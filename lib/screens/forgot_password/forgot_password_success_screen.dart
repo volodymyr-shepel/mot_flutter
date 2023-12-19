@@ -10,7 +10,6 @@ class ForgotPasswordSuccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomSuccessScreen(
-      routeName: "/forgot_password_success",
       imagePath: "assets/images/success.png",
       title: "Check your email",
       buttonText: "Back to Sign In",

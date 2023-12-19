@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class CustomSuccessScreen extends StatelessWidget {
-  final String routeName;
   final String imagePath;
   final String title;
   final String buttonText;
   final String nextRoute;
 
   const CustomSuccessScreen({
-    required this.routeName,
     required this.imagePath,
     required this.title,
     required this.buttonText,
@@ -36,6 +34,7 @@ class CustomSuccessScreen extends StatelessWidget {
           Image.asset(
             imagePath,
             height: MediaQuery.of(context).size.height * 0.4,
+            filterQuality: FilterQuality.high,
           ),
           const SizedBox(height: 16),
           Text(

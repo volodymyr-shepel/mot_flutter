@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mot/components/custom_text_form_field.dart';
-
+import 'package:mot/screens/sign_in/sign_in_success_screen.dart';
 import '../../../constants.dart';
 import '../../../helper/keyboard.dart';
 import '../../forgot_password/forgot_password_screen.dart';
-import '../../login_success/login_success_screen.dart';
 
 class SignForm extends StatefulWidget {
   const SignForm({super.key});
@@ -84,7 +83,7 @@ class _SignFormState extends State<SignForm> {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
-                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                Navigator.pushNamed(context, SignInSuccessScreen.routeName);
               }
             },
             child: const Text("Continue"),

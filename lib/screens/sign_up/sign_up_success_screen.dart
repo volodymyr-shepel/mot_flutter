@@ -10,7 +10,6 @@ class SignUpSuccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomSuccessScreen(
-      routeName: "/signup_success",
       imagePath: "assets/images/success.png",
       title: "Check your email",
       buttonText: "Back to Sign In",

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mot/screens/forgot_password/forgot_password_success_screen.dart';
-import 'package:mot/screens/welcome/welcome_screen.dart';
 import '../../../components/no_account_text.dart';
 import '../../../constants.dart';
 import '../../../components/custom_text_form_field.dart';

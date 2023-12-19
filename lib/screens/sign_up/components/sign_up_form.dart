@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mot/screens/complete_profile/complete_profile_screen.dart';
-import 'package:mot/screens/sign_up/sign_up_success_screen.dart';
 import '../../../components/custom_text_form_field.dart';
 import '../../../constants.dart';
 //import '../../complete_profile/complete_profile_screen.dart';
@@ -25,35 +24,7 @@ class _SignUpFormState extends State<SignUpForm> {
       key: _formKey,
       child: Column(
         children: [
-      //     CustomTextFormField(
-      //       labelText: "First Name",
-      //       hintText: "Enter your first name",
-      //       onSaved: (newValue) => firstName = newValue,
-      //       obscureText: false,
-      //       validator: (value) {
-      //         if (value!.isEmpty) {
-      //           return "First name can not be empty";
-      //         }
-      //         return null;
-      //       },
-      //       keyboardType: TextInputType.text,
-      //     ),
-      //     const SizedBox(height: 16),
-      //     CustomTextFormField(
-      //       obscureText: false,
-      //     labelText: "Last Name",
-      //     hintText: "Enter your last name",
-      //     onSaved: (newValue) => lastName = newValue,
-      //     validator: (value) {
-      //       if (value!.isEmpty) {
-      //         return "Last name can not be empty";
-      //       }
-      //       return null;
-      //     },
-      //     keyboardType: TextInputType.text,
-      // ),
-      //     const SizedBox(height: 16),
-
+      
           CustomTextFormField(
             obscureText: false,
           labelText: "Email",
