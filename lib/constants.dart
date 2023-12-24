@@ -26,6 +26,11 @@ const String kPhoneNumberNullError = "Please Enter your phone number";
 const String kAddressNullError = "Please Enter your address";
 
 
+
+const String baseUrl = 'http://192.168.1.46';
+
+
+
 const headingStyle = TextStyle(
   fontSize: 24,
   fontWeight: FontWeight.bold,

@@ -38,15 +38,56 @@ class _InitScreenState extends State<InitScreen> {
     const ProfileScreen()
   ];
 
+  final List<AppBar> appBars = [
+    AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: kPrimaryDarkColor,
+      title: Text(
+        'Home',
+        style: TextStyle(fontSize: 20.0, color: Colors.white),
+      ),
+    ),
+    AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: kPrimaryDarkColor,
+      title: Text(
+        'Search',
+        style: TextStyle(fontSize: 20.0, color: Colors.white),
+      ),
+    ),
+    AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: kPrimaryDarkColor,
+      title: Text(
+        'Favorite',
+        style: TextStyle(fontSize: 20.0, color: Colors.white),
+      ),
+    ),
+    AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: kPrimaryDarkColor,
+      title: Text(
+        'Cart',
+        style: TextStyle(fontSize: 20.0, color: Colors.white),
+      ),
+    ),
+    AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: kPrimaryDarkColor,
+      title: Text(
+        'Profile',
+        style: TextStyle(fontSize: 20.0, color: Colors.white),
+      ),
+    ),
+  ];
+
+
   int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: kPrimaryDarkColor,
-      ),
+      appBar: appBars[currentSelectedIndex],
       body: pages[currentSelectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: updateCurrentIndex,
