@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mot/components/custom_text_form_field.dart';
+import 'package:mot/models/user_data.dart';
 import 'package:mot/screens/sign_up/sign_up_success_screen.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import '../../../constants.dart';
 
 class CompleteProfileForm extends StatefulWidget {
-  const CompleteProfileForm({super.key});
+  final UserData userData;
+  
+  CompleteProfileForm({super.key, required this.userData});
 
   @override
   _CompleteProfileFormState createState() => _CompleteProfileFormState();
@@ -11,27 +17,43 @@ class CompleteProfileForm extends StatefulWidget {
 
 class _CompleteProfileFormState extends State<CompleteProfileForm> {
   final _formKey = GlobalKey<FormState>();
-  final List<String?> errors = [];
   String? firstName;
   String? lastName;
-  String? phoneNumber;
-  String? address;
+  
+  Future<void> signUp() async {
+    // Your API endpoint
+    final String apiUrl = '$baseUrl/api/auth/user/v1/signUp';
 
-  void addError({String? error}) {
-    if (!errors.contains(error)) {
-      setState(() {
-        errors.add(error);
-      });
+    try {
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'email': widget.userData.getEmail(),
+          'password': widget.userData.getPassword(),
+          'firstName':  widget.userData.getFirstName(),
+          'lastName': widget.userData.getLastName(),
+          "userRole": "CUSTOMER" // TODO: change it also in backend
+          
+        }),
+      );
+
+      if (response.statusCode == 201) {
+        // Successful response, handle it accordingly
+        print('Request successful: ${response.body}');
+        // Navigate to the next screen on success
+        Navigator.pushNamed(context, SignUpSuccessScreen.routeName);
+      } else {
+        // Error response, handle errors
+        print('Error: ${response.statusCode}, ${response.body}');
+      }
+    } catch (error) {
+      // Exception occurred during the request
+      print('Error: $error');
     }
   }
-
-  void removeError({String? error}) {
-    if (errors.contains(error)) {
-      setState(() {
-        errors.remove(error);
-      });
-    }
-  }
+  
+  
 
   @override
   Widget build(BuildContext context) {
@@ -68,10 +90,18 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
       ),
           const SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async{
               if (_formKey.currentState!.validate()) {
-                Navigator.pushNamed(context, SignUpSuccessScreen.routeName);
-              }
+                // Save the form data to userData after validation
+                _formKey.currentState!.save();
+                
+                // Set the first name and last name in the userData instance
+                widget.userData.setFirstName(firstName);
+                widget.userData.setLastName(lastName);
+
+                await signUp();
+                
+    }
             },
             child: const Text("Continue"),
           ),

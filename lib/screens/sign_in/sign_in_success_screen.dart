@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mot/screens/init_screen/init_screen.dart';
-import 'package:mot/screens/profile/profile_screen.dart';
 import '../../components/custom_success_screen.dart';
 
 // TODO : FIX THE ICON COLOR CHANGE

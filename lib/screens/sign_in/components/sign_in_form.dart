@@ -47,6 +47,7 @@ class _SignFormState extends State<SignForm> {
           }),
         );
 
+
         // Check the response status code
         if (response.statusCode == 200) {
           // Request was successful, you can handle the response data here
@@ -67,8 +68,13 @@ class _SignFormState extends State<SignForm> {
         } else {
           // Request failed with an error status code
           print('Failed to sign in, status code: ${response.statusCode}');
+
+          isCorrect = false; 
+          _formKey.currentState!.validate(); // revalidate since the response to the backend was not successful
+
           
-          isCorrect = false;
+
+          
           
           // Handle error, show a message, or perform other actions
         }
@@ -116,7 +122,7 @@ class _SignFormState extends State<SignForm> {
             
             if (value!.isEmpty) {
               return "Password can not be empty";
-            } else if (value.length < 8) {  //TODO: change regular expression to validate password
+            } else if (!passwordValidatorRegExp.hasMatch(value)) { 
               return "Invalid Password";
             }
             else if(!isCorrect){
@@ -152,16 +158,11 @@ class _SignFormState extends State<SignForm> {
   onPressed: () async {
     if (_formKey.currentState!.validate()) {
       
-      // if all are valid then go to success screen
       KeyboardUtil.hideKeyboard(context);
       
-      // Call signIn only if validation passes
       await signIn();
 
-      // Re-validate and trigger the error messages to show immediately
-      _formKey.currentState!.validate();
-
-      isCorrect = true;
+      isCorrect = true; 
     }
   },
   child: const Text("Continue"),

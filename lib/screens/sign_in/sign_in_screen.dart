@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import '../../constants.dart';
 import '../../components/no_account_text.dart';
 import 'components/sign_in_form.dart';
+import '../../../helper/keyboard.dart';
 
 class SignInScreen extends StatelessWidget {
   static String routeName = "/sign_in";
 
-  const SignInScreen({Key? key}) : super(key: key);
+  const SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,7 @@ class SignInScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
+            KeyboardUtil.hideKeyboard(context);
             Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back_ios),

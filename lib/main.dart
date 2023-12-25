@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mot/routes.dart';
 import 'package:mot/screens/welcome/welcome_screen.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
-
-
 import 'theme.dart';
 
 void main() {
-  const FlutterSecureStorage secureStorage = const FlutterSecureStorage();
+  
 
   runApp(const MyApp());
 }

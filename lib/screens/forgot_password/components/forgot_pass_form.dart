@@ -5,6 +5,7 @@ import '../../../constants.dart';
 import '../../../components/custom_text_form_field.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '../../../helper/keyboard.dart';
 
 class ForgotPassForm extends StatefulWidget {
   const ForgotPassForm({super.key});
@@ -19,6 +20,13 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
   String? email;
 
   final String apiUrl = '$baseUrl/api/auth/account/v1/forgetPassword';
+
+  bool isCorrect = true;
+
+
+  
+
+  
 
   Future<void> sendForgotPasswordRequest() async {
     try {
@@ -37,10 +45,15 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
         print('Forgot password request successful! Response data: ${response.body}');
         // Navigate to the success screen or perform other actions
         Navigator.pushNamed(context, ForgotPasswordSuccessScreen.routeName);
+
+        isCorrect = true;
       } else {
         // Request failed with an error status code
         print('Failed to send forgot password request, status code: ${response.statusCode}');
         // Handle error, show a message, or perform other actions
+        isCorrect = false; 
+        _formKey.currentState!.validate(); // revalidate since the response to the backend was not successful
+
       }
     } catch (error) {
       // Handle other errors, such as network issues
@@ -48,6 +61,8 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
       // Show an error message or perform other actions
     }
   }
+
+  
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -64,6 +79,9 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
               if (value!.isEmpty || !emailValidatorRegExp.hasMatch(value)) {
                 return "Invalid Email";
               }
+              else if(!isCorrect){
+                return "Verify your email";
+              }
               return null;
             },
         ),
@@ -71,10 +89,15 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
           //FormError(errors: errors),
           const SizedBox(height: 8),
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async{
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-                sendForgotPasswordRequest(); // Call the function to send the request
+                
+                KeyboardUtil.hideKeyboard(context);
+
+                await sendForgotPasswordRequest(); // Call the function to send the request
+
+                isCorrect = true; 
               }
             },
             child: const Text("Continue"),

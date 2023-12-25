@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mot/models/user_data.dart';
 
 import '../../constants.dart';
 import 'components/complete_profile_form.dart';
@@ -6,7 +7,10 @@ import 'components/complete_profile_form.dart';
 class CompleteProfileScreen extends StatelessWidget {
   static String routeName = "/complete_profile";
 
-  const CompleteProfileScreen({super.key});
+  final UserData userData;
+
+  const CompleteProfileScreen({Key? key, required this.userData}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +24,7 @@ class CompleteProfileScreen extends StatelessWidget {
         ),
         backgroundColor: kPrimaryDarkColor,
       ),
-      body: const Center(
+      body: Center(
         child: SafeArea(
           child: SizedBox(
             width: double.infinity,
@@ -39,9 +43,8 @@ class CompleteProfileScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 16),
-                    CompleteProfileForm(),
+                    CompleteProfileForm(userData: userData),
                     SizedBox(height: 30),
-        
                   ],
                 ),
               ),

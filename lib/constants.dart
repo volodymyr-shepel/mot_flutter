@@ -9,6 +9,9 @@ const kPrimaryDarkColor = Color(0xFF222325);
 final RegExp emailValidatorRegExp =
     RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 
+final RegExp passwordValidatorRegExp = 
+    RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{12,}$');
+    
 const String kEmailNullError = "Please Enter your email";
 
 const String kInvalidEmailError = "Please Enter Valid Email";
